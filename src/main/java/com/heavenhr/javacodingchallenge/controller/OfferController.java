@@ -25,7 +25,7 @@ public class OfferController {
         this.offerService = offerService;
     }
 
-    @PostMapping(value = "/offer", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/offers", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
     public void createJobOffer(@RequestBody final Offer offer, final BindingResult bindingResult){
         if (bindingResult.hasErrors() || offer == null) {
@@ -34,7 +34,7 @@ public class OfferController {
     offerService.createOffer(offer);
     }
 
-    @GetMapping(value = "/offer")
+    @GetMapping(value = "/offers")
     @ResponseStatus(HttpStatus.OK)
     public List<Offer> getAllOffers(){
         return offerService.getAllOffers();

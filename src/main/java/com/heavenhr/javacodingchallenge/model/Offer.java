@@ -1,6 +1,7 @@
 package com.heavenhr.javacodingchallenge.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,6 +24,7 @@ public class Offer {
     @NotNull
     protected LocalDate startDate;
 
+    @Formula("(select count(*) from job_application ja where ja.job_title = job_title )")
     protected int numberOfApplications;
 
 }

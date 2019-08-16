@@ -6,7 +6,9 @@ import com.heavenhr.javacodingchallenge.repository.JobApplicationRepository;
 import com.heavenhr.javacodingchallenge.repository.OfferRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class JobApplicationService {
@@ -25,5 +27,13 @@ public class JobApplicationService {
             jobApplication.setRelatedOffer(offer);
             jobApplicationRepository.save(jobApplication);
         }
+    }
+
+    public List<JobApplication> getJobApplicationsByJobTitle(final String jobTitle){
+        return jobApplicationRepository.findAllByJobTitle(jobTitle);
+    }
+
+    public JobApplication getJobApplicationByPrimaryKey(final String jobTitle, final String email){
+        return jobApplicationRepository.findByJobTitleAndCandidateEmail(jobTitle, email);
     }
 }
