@@ -1,7 +1,6 @@
 package com.heavenhr.javacodingchallenge.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.heavenhr.javacodingchallenge.repository.JobApplicationPrimaryKey;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,7 +22,6 @@ public class JobApplication {
     @Id
     @JsonIgnore
     private String jobTitle;
-
     @Id
     private String candidateEmail;
 
@@ -31,10 +29,10 @@ public class JobApplication {
     @JoinColumn(name = "jobTitle", insertable = false, updatable = false)
     private Offer relatedOffer;
 
-    private String resumeText;
-
     @Enumerated(EnumType.STRING)
     private JobApplicationStatus applicationStatus;
+
+    private String resumeText;
 
     public Offer getRelatedOffer() {
         return relatedOffer;
