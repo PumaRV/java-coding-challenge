@@ -86,4 +86,11 @@ public class OfferController {
     }
 
 
+    @GetMapping(value = "/offers/{jobTitle}/applications/count")
+    @ResponseStatus(HttpStatus.OK)
+    public long getApplicationsCount(@PathVariable(value = "jobTitle") final String jobTitle) {
+        return jobApplicationService.getJobApllicationCountByJobTitle(jobTitle);
+    }
+
+
 }

@@ -37,6 +37,10 @@ public class JobApplicationService {
         return jobApplicationRepository.findAllByJobTitle(jobTitle);
     }
 
+    public long getJobApllicationCountByJobTitle(final String jobTitle){
+        return jobApplicationRepository.countAllByJobTitle(jobTitle);
+    }
+
     public JobApplication getJobApplicationByPrimaryKey(final String jobTitle, final String email) {
         return jobApplicationRepository.findByJobTitleAndCandidateEmail(jobTitle, email);
     }
@@ -58,4 +62,5 @@ public class JobApplicationService {
                 LOGGER.info("The status of the application for " + jobTitle +" position from applicant " + email + " was updated to: " + status);
         }
     }
+
 }

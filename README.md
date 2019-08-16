@@ -156,6 +156,15 @@ This endpoint returns the total of job applications that have been created.
 ```2```
 
 ***
+
+GET /offers/{jobTitle}/applications/count
+
+This endpoint returns the count of job applications for a particular offer
+
+```2```
+
+***
+
 PATCH /offers/{jobTitle}/applications/{email}/?status=INVITED
 
 This endpoint allows the user to progress the status of an application. It requires a query parameter with a valid job application status. 
