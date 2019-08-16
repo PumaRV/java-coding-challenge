@@ -10,4 +10,5 @@ public interface JobApplicationRepository extends CrudRepository<JobApplication,
     List<JobApplication> findAllByJobTitle(final String jobTitle);
 
     JobApplication findByJobTitleAndCandidateEmail(final String jobTitle, final String candidateEmail);
+
 }

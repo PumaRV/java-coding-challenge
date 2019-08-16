@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,14 +37,33 @@ public class JobApplicationController {
 
     @GetMapping(value = "/applications/{jobTitle}/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public JobApplication getAllOffers(@PathVariable(value = "jobTitle") final String jobTitle, @PathVariable(value = "email") final String email) {
+    public JobApplication getApplicationById(@PathVariable(value = "jobTitle") final String jobTitle, @PathVariable(value = "email") final String email) {
         return jobApplicationService.getJobApplicationByPrimaryKey(jobTitle, email);
     }
 
     @GetMapping(value = "/applications/{jobTitle}")
     @ResponseStatus(HttpStatus.OK)
-    public List<JobApplication> getAllOffers(@PathVariable(value = "jobTitle") final String jobTitle) {
+    public List<JobApplication> getApplicationsByOffer(@PathVariable(value = "jobTitle") final String jobTitle) {
         return jobApplicationService.getJobApplicationsByJobTitle(jobTitle);
     }
+
+    @GetMapping(value = "/applications/{jobTitle}/{email}/status")
+    @ResponseStatus(HttpStatus.OK)
+    public String getApplicationStatus(@PathVariable(value = "jobTitle") final String jobTitle, @PathVariable(value = "email") final String email) {
+        return jobApplicationService.getJobApplicationByPrimaryKey(jobTitle, email).getApplicationStatus().name();
+    }
+
+    @GetMapping(value = "/applications/count")
+    @ResponseStatus(HttpStatus.OK)
+    public long getApplicationsCount() {
+        return jobApplicationService.getJobApplicationCount();
+    }
+
+    @PatchMapping(value = "/applications/{jobTitle}/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateApplicationStatus(@PathVariable(value = "jobTitle") final String jobTitle, @PathVariable(value = "email") final String email, @RequestParam(value = "status") final String status) {
+        jobApplicationService.updateJobApplicationStatus(status, jobTitle, email);
+    }
+
 
 }
