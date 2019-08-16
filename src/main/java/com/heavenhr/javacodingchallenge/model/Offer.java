@@ -18,10 +18,11 @@ public class Offer {
     @Basic(optional = false)
     @NotNull
     @Column(unique = true)
-    private String jobTitle;
+    protected String jobTitle;
 
     @NotNull
-    private LocalDate startDate;
+    protected LocalDate startDate;
 
-    private int numberOfApplications;
+    protected int numberOfApplications;
+
 }

@@ -18,13 +18,13 @@ public class JobApplicationController {
 
     private final JobApplicationService jobApplicationService;
 
-    public JobApplicationController(final JobApplicationService jobApplicationService){
+    public JobApplicationController(final JobApplicationService jobApplicationService) {
         this.jobApplicationService = jobApplicationService;
     }
 
     @PostMapping(value = "/application", consumes = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseStatus(HttpStatus.CREATED)
-    public void createJobApplication(@RequestBody final JobApplication jobApplication, final BindingResult bindingResult){
+    public void createJobApplication(@RequestBody final JobApplication jobApplication, final BindingResult bindingResult) {
         jobApplicationService.createJobApplication(jobApplication);
     }
 
